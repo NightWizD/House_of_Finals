@@ -18,7 +18,7 @@ const schema = z.object({
     .max(20)
     .regex(/^[0-9+\-\s()]+$/, "Digits only"),
   match: z.enum(["ucl", "ipl", "both"]),
-  seats: z.coerce.number().int().min(1, "Min 1 seat").max(10, "Max 10 seats"),
+  seats: z.number().int().min(1, "Min 1 seat").max(10, "Max 10 seats"),
   notes: z.string().max(280).optional(),
 });
 
