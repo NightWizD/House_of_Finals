@@ -21,20 +21,20 @@ const MATCHES = [
 
 export function Matches() {
   return (
-    <section id="matches" className="relative px-6 py-32 md:px-12 md:py-48">
+    <section id="matches" className="relative px-5 py-20 md:px-12 md:py-48">
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7 }}
-          className="mb-20 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end"
+          className="mb-12 flex flex-col items-start justify-between gap-4 md:mb-20 md:flex-row md:items-end"
         >
           <div>
             <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
               The Lineup
             </p>
-            <h2 className="font-display mt-4 text-6xl md:text-8xl">
+            <h2 className="font-display mt-4 text-5xl leading-[0.9] md:text-8xl">
               TWO NIGHTS.<br />ONE ROOFTOP.
             </h2>
           </div>
@@ -44,7 +44,7 @@ export function Matches() {
           </p>
         </motion.div>
 
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-4 md:gap-6 md:grid-cols-2">
           {MATCHES.map((m, i) => (
             <motion.article
               key={m.title}
@@ -54,7 +54,7 @@ export function Matches() {
               transition={{ duration: 0.8, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
               className="group relative overflow-hidden border border-border bg-card"
             >
-              <div className="aspect-[4/5] overflow-hidden">
+              <div className="aspect-[16/9] overflow-hidden sm:aspect-[4/3] md:aspect-[4/5]">
                 <motion.img
                   src={m.img}
                   alt={m.title}
@@ -64,17 +64,23 @@ export function Matches() {
                   className="h-full w-full object-cover grayscale transition-transform duration-[1.4s] ease-out group-hover:scale-110"
                 />
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
-              <div className="absolute inset-0 flex flex-col justify-between p-6 md:p-10">
-                <div className="flex items-center justify-between text-xs uppercase tracking-[0.3em] text-muted-foreground">
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
+              <div className="absolute inset-0 flex flex-col justify-between p-5 md:p-10">
+                <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.3em] text-muted-foreground md:text-xs">
                   <span>{m.tag}</span>
                   <span>{m.date}</span>
                 </div>
                 <div>
-                  <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
+                  <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground md:text-xs">
                     {m.sub}
                   </p>
-                  <h3 className="font-display mt-2 text-5xl md:text-7xl">{m.title}</h3>
+                  <h3 className="font-display mt-1 text-4xl md:mt-2 md:text-7xl">{m.title}</h3>
+                  <a
+                    href="#book"
+                    className="mt-3 inline-block border border-foreground/40 px-5 py-2.5 text-[10px] uppercase tracking-widest text-foreground transition hover:bg-foreground hover:text-background active:scale-95 md:hidden"
+                  >
+                    Book this night →
+                  </a>
                 </div>
               </div>
             </motion.article>

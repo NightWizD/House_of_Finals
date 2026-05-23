@@ -67,10 +67,14 @@
 @layer base {
   * {
     border-color: var(--color-border);
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
   }
 
   html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
 
   body {
@@ -78,6 +82,23 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    overscroll-behavior-y: none;
+  }
+
+  /* Ensure all inputs & buttons have comfortable touch targets */
+  input,
+  textarea,
+  select,
+  button,
+  a {
+    touch-action: manipulation;
+  }
+
+  input,
+  textarea,
+  select {
+    min-height: 48px;
+    font-size: 16px; /* prevents iOS zoom on focus */
   }
 
   .font-display {

@@ -28,7 +28,7 @@ export function Venue() {
         <div className="absolute inset-0 bg-background/50" />
       </motion.div>
 
-      <div className="relative mx-auto max-w-7xl px-6 py-32 md:px-12 md:py-48">
+      <div className="relative mx-auto max-w-7xl px-5 py-20 md:px-12 md:py-48">
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -43,13 +43,13 @@ export function Venue() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="font-display mt-6 max-w-4xl text-5xl leading-[0.95] md:text-8xl"
+          className="font-display mt-6 max-w-4xl text-4xl leading-[0.95] sm:text-5xl md:text-8xl"
         >
           TWENTY FLOORS UP.<br />
           <span className="text-stroke">UNMATCHED ENERGY.</span>
         </motion.h2>
 
-        <div className="mt-20 grid grid-cols-2 gap-px border border-border bg-border md:grid-cols-4">
+        <div className="mt-12 grid grid-cols-2 gap-px border border-border bg-border md:mt-20 md:grid-cols-4">
           {stats.map((s, i) => (
             <motion.div
               key={s.v}
@@ -57,9 +57,9 @@ export function Venue() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="bg-background p-8"
+              className="bg-background p-5 md:p-8"
             >
-              <div className="font-display text-5xl md:text-6xl">{s.k}</div>
+              <div className="font-display text-4xl md:text-6xl">{s.k}</div>
               <div className="mt-2 text-xs uppercase tracking-[0.2em] text-muted-foreground">
                 {s.v}
               </div>
