@@ -124,7 +124,7 @@ export function Booking() {
 
           <Field label="Seats (1–10)" error={errors.seats?.message}>
             <input
-              {...register("seats")}
+              {...register("seats", { valueAsNumber: true })}
               type="number"
               min={1}
               max={10}
