@@ -35,8 +35,6 @@ export function Hero() {
       >
         <span className="font-display text-base tracking-widest md:text-xl">HOF/2026</span>
         <div className="hidden gap-8 text-xs uppercase tracking-[0.2em] text-muted-foreground md:flex">
-          <a href="#matches" className="transition hover:text-foreground">Matches</a>
-          <a href="#venue" className="transition hover:text-foreground">Venue</a>
           <a href="#book" className="transition hover:text-foreground">Book</a>
         </div>
         <a

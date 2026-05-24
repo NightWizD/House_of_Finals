@@ -267,8 +267,25 @@ export function Booking() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="border border-border bg-card p-6 md:p-12"
+          className="relative border border-foreground/20 bg-card p-6 md:p-12 shadow-glow overflow-hidden rounded-2xl"
         >
+          {/* Glowing accent bar at top */}
+          <div className="absolute top-0 left-0 right-0 h-[4px] bg-gradient-to-r from-emerald-500 via-amber-500 to-blue-500" />
+          
+          {/* Pulsing Status indicator */}
+          <div className="flex items-center justify-between mb-8 pb-4 border-b border-border/40 mt-1">
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-emerald-500 flex items-center gap-1.5 select-none">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              Reservations Live
+            </span>
+            <span className="text-[9px] uppercase tracking-[0.15em] text-muted-foreground bg-white/5 border border-white/10 px-2 py-0.5 rounded select-none">
+              🔑 Limited to 200 Seats
+            </span>
+          </div>
+
           {/* Full Name */}
           <Field label="Full Name" required error={errors.name?.message}>
             <input
