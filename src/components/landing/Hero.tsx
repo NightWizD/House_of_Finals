@@ -26,13 +26,14 @@ export function Hero() {
         <div className="absolute inset-0 bg-grain mix-blend-overlay opacity-40" />
       </motion.div>
 
+      {/* Navbar */}
       <motion.nav
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.2, duration: 0.6 }}
-        className="absolute left-0 right-0 top-0 z-20 flex items-center justify-between px-5 py-5 md:px-12 md:py-6"
+        className="absolute left-0 right-0 top-0 z-20 flex items-center justify-between px-5 py-4 md:px-12 md:py-6"
       >
-        <span className="font-display text-lg tracking-widest md:text-xl">HOF/2026</span>
+        <span className="font-display text-base tracking-widest md:text-xl">HOF/2026</span>
         <div className="hidden gap-8 text-xs uppercase tracking-[0.2em] text-muted-foreground md:flex">
           <a href="#matches" className="transition hover:text-foreground">Matches</a>
           <a href="#venue" className="transition hover:text-foreground">Venue</a>
@@ -40,21 +41,22 @@ export function Hero() {
         </div>
         <a
           href="#book"
-          className="rounded-full border border-border bg-foreground px-5 py-2.5 text-xs font-medium uppercase tracking-widest text-background transition hover:opacity-80 active:scale-95"
+          className="rounded-full border border-border bg-foreground px-4 py-2 text-[10px] font-medium uppercase tracking-widest text-background transition hover:opacity-80 active:scale-95 md:px-5 md:py-2.5 md:text-xs"
         >
           Reserve
         </a>
       </motion.nav>
 
+      {/* Hero Content */}
       <motion.div
         style={{ opacity }}
-        className="relative z-10 mx-auto flex h-full max-w-7xl flex-col items-center justify-center px-5 text-center md:px-6"
+        className="relative z-10 mx-auto flex h-full max-w-7xl flex-col items-center justify-center px-4 text-center md:px-6"
       >
         <motion.p
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.4 }}
-          className="text-[9px] uppercase tracking-[0.35em] text-muted-foreground md:text-xs"
+          className="text-[9px] uppercase tracking-[0.3em] text-muted-foreground md:text-xs"
         >
           Ahmedabad finally gets a <span className="italic text-foreground">real finals atmosphere</span>
         </motion.p>
@@ -63,7 +65,7 @@ export function Hero() {
           initial={{ y: 60, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          className="font-display mt-5 text-[20vw] leading-[0.85] sm:text-[18vw] md:text-[10rem] lg:text-[12rem]"
+          className="font-display mt-4 text-[17vw] leading-[0.88] sm:text-[16vw] md:text-[9rem] lg:text-[12rem]"
         >
           THE HOUSE
         </motion.h1>
@@ -71,7 +73,7 @@ export function Hero() {
           initial={{ y: 60, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.65, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          className="font-display text-stroke text-[20vw] leading-[0.85] sm:text-[18vw] md:text-[10rem] lg:text-[12rem]"
+          className="font-display text-stroke text-[17vw] leading-[0.88] sm:text-[16vw] md:text-[9rem] lg:text-[12rem]"
         >
           OF FINALS
         </motion.h1>
@@ -80,22 +82,24 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1 }}
-          className="mt-6 text-[9px] uppercase tracking-[0.3em] text-muted-foreground md:mt-8 md:text-xs"
+          className="mt-5 text-[9px] uppercase tracking-[0.3em] text-muted-foreground md:mt-8 md:text-xs"
         >
           UCL · IPL · Rooftop · 20 Floors Up
         </motion.p>
 
+        {/* Mobile CTA button */}
         <motion.a
           href="#book"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.1 }}
-          className="mt-8 inline-block rounded-full border border-foreground/40 px-8 py-3.5 text-xs uppercase tracking-[0.25em] text-foreground transition hover:bg-foreground hover:text-background active:scale-95 md:hidden"
+          className="mt-7 inline-flex items-center gap-2 rounded-full border border-foreground/40 px-7 py-3 text-[10px] uppercase tracking-[0.25em] text-foreground transition hover:bg-foreground hover:text-background active:scale-95 md:hidden"
         >
-          Book a seat ↓
+          Book a seat <span className="animate-bounce inline-block">↓</span>
         </motion.a>
       </motion.div>
 
+      {/* Desktop scroll hint */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

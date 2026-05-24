@@ -270,9 +270,9 @@ export function Booking() {
 
 
   return (
-    <section id="book" className="relative px-5 py-20 md:px-12 md:py-48">
+    <section id="book" className="relative px-5 py-16 md:px-12 md:py-48">
       <Toaster theme="dark" />
-      <div className="mx-auto grid max-w-7xl gap-12 lg:gap-16 lg:grid-cols-[1fr_1.2fr]">
+      <div className="mx-auto grid max-w-7xl gap-10 lg:gap-16 lg:grid-cols-[1fr_1.2fr]">
         {/* Left info panel */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -283,7 +283,7 @@ export function Booking() {
           <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
             Reserve a seat
           </p>
-          <h2 className="font-display mt-4 text-5xl leading-[0.9] md:text-8xl">
+          <h2 className="font-display mt-3 text-4xl leading-[0.9] md:text-8xl">
             BOOK YOUR<br />SEAT.
           </h2>
           <p className="mt-4 max-w-md text-sm text-muted-foreground md:mt-6">
@@ -298,6 +298,19 @@ export function Booking() {
             <Row k="IPL Final" v="31 May 2026" />
             <Row k="Queries" v="+91 8401 401 312" />
           </div>
+
+          {/* Get Directions Button */}
+          <a
+            href="https://maps.app.goo.gl/mU4JRcm78LXGVa8o6"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 inline-flex items-center gap-2.5 border border-foreground bg-foreground px-6 py-3.5 text-[11px] font-semibold uppercase tracking-[0.25em] text-background transition hover:bg-background hover:text-foreground active:scale-95 shadow-[0_0_20px_oklch(1_0_0_/0.15)]"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </svg>
+            📍 View Venue on Maps
+          </a>
         </motion.div>
 
         {/* Right form */}
@@ -376,18 +389,20 @@ export function Booking() {
           </Field>
 
           {/* Total + Submit */}
-          <div className="mt-6 flex flex-col gap-4 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between md:mt-8">
-            <div>
-              <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                Total due at venue
-              </div>
-              <div className="font-display mt-1 text-3xl md:text-4xl">
-                ₹{total.toLocaleString("en-IN")}
+          <div className="mt-5 flex flex-col gap-3 border-t border-border pt-5 md:mt-8">
+            <div className="flex items-center justify-between">
+              <div>
+                <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                  Total due at venue
+                </div>
+                <div className="font-display mt-1 text-3xl md:text-4xl">
+                  ₹{total.toLocaleString("en-IN")}
+                </div>
               </div>
             </div>
             <button
               type="submit"
-              className="w-full border border-foreground bg-foreground px-6 py-4 text-xs font-medium uppercase tracking-[0.25em] text-background transition hover:bg-background hover:text-foreground active:scale-95 disabled:opacity-50 sm:w-auto cursor-pointer"
+              className="w-full border border-foreground bg-foreground px-6 py-4 text-xs font-medium uppercase tracking-[0.25em] text-background transition hover:bg-background hover:text-foreground active:scale-95 disabled:opacity-50 cursor-pointer"
             >
               {submitted ? "Reserve another" : "Reserve seat"}
             </button>
@@ -399,7 +414,7 @@ export function Booking() {
       <Dialog open={isPaymentDialogOpen} onOpenChange={(open) => {
         if (!open) closePaymentDialog();
       }}>
-        <DialogContent className="max-w-[95vw] md:max-w-2xl bg-card border-border text-foreground p-6 md:p-8 rounded-lg overflow-y-auto max-h-[90vh] shadow-2xl">
+        <DialogContent className="max-w-[96vw] md:max-w-2xl bg-card border-border text-foreground p-5 md:p-8 rounded-xl overflow-y-auto max-h-[92vh] shadow-2xl">
           <DialogHeader className="text-left">
             <DialogTitle className="font-display text-2xl md:text-3xl tracking-wide">
               COMPLETE YOUR RESERVATION
@@ -409,9 +424,9 @@ export function Booking() {
             </DialogDescription>
           </DialogHeader>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-6 border-y border-border/50 py-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 my-5 border-y border-border/50 py-5">
             {/* Left side: QR payment */}
-            <div className="flex flex-col items-center justify-between bg-background/40 border border-border/40 rounded-xl p-6 text-center">
+              <div className="flex flex-col items-center bg-background/40 border border-border/40 rounded-xl p-5 text-center">
               <div className="w-full">
                 <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-1">
                   Pay Cover Charge

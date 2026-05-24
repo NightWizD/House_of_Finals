@@ -21,7 +21,7 @@ const MATCHES = [
 
 export function Matches() {
   return (
-    <section id="matches" className="relative px-5 py-20 md:px-12 md:py-48">
+    <section id="matches" className="relative px-5 py-16 md:px-12 md:py-48">
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -34,7 +34,7 @@ export function Matches() {
             <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
               The Lineup
             </p>
-            <h2 className="font-display mt-4 text-5xl leading-[0.9] md:text-8xl">
+            <h2 className="font-display mt-3 text-4xl leading-[0.9] sm:text-5xl md:text-8xl">
               TWO NIGHTS.<br />ONE ROOFTOP.
             </h2>
           </div>
@@ -77,7 +77,7 @@ export function Matches() {
                   <h3 className="font-display mt-1 text-4xl md:mt-2 md:text-7xl">{m.title}</h3>
                   <a
                     href="#book"
-                    className="mt-3 inline-block border border-foreground/40 px-5 py-2.5 text-[10px] uppercase tracking-widest text-foreground transition hover:bg-foreground hover:text-background active:scale-95 md:hidden"
+                    className="mt-3 inline-flex items-center gap-1 border border-foreground/40 px-5 py-2.5 text-[10px] uppercase tracking-widest text-foreground transition hover:bg-foreground hover:text-background active:scale-95"
                   >
                     Book this night →
                   </a>
