@@ -50,45 +50,6 @@ const fileToBase64 = (file: File): Promise<string> => {
   });
 };
 
-const sendWhatsAppMessageFrontend = async (phone: string, message: string) => {
-  const enable = import.meta.env.VITE_ENABLE_WHATSAPP === "true";
-  const instanceId = import.meta.env.VITE_GREEN_API_INSTANCE_ID;
-  const token = import.meta.env.VITE_GREEN_API_TOKEN;
-  const apiUrl = import.meta.env.VITE_GREEN_API_URL || "https://api.green-api.com";
-
-  if (!enable || !instanceId || !token) {
-    console.warn("WhatsApp messaging is disabled or credentials are missing in env.");
-    return;
-  }
-
-  // Clean phone number: remove non-digits
-  let cleanPhone = phone.replace(/[+\-\s()]/g, "");
-  // Default to country code prefix if not provided (e.g., India 91)
-  if (cleanPhone.length === 10) {
-    cleanPhone = "91" + cleanPhone;
-  }
-
-  const url = `${apiUrl}/waInstance${instanceId}/sendMessage/${token}`;
-  const payload = {
-    chatId: `${cleanPhone}@c.us`,
-    message: message,
-  };
-
-  try {
-    const res = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
-    const data = await res.json();
-    console.log("WhatsApp message sent successfully via Green-API:", data);
-  } catch (error) {
-    console.error("Failed to send WhatsApp message via Green-API:", error);
-  }
-};
-
 export function Booking() {
   const [submitted, setSubmitted] = useState(false);
   const [pendingBookingData, setPendingBookingData] = useState<FormValues | null>(null);
@@ -204,20 +165,6 @@ export function Booking() {
         );
         // Simulate a minor delay when not configured to maintain premium feel
         await new Promise((r) => setTimeout(r, 1500));
-      }
-
-      // 4. Send Automated WhatsApp Messages directly from frontend
-      try {
-        const buyerMessage = `Hi ${pendingBookingData.name},\n\nWe have received your payment of *₹${total}* for *${pendingBookingData.tickets} seat(s)* to *${screeningLabel}*.\n\nWe received your payment, we will share the ticket soon! 🎟️✨`;
-        await sendWhatsAppMessageFrontend(pendingBookingData.whatsapp, buyerMessage);
-
-        const adminNumber = import.meta.env.VITE_CLIENT_ADMIN_NUMBER;
-        if (adminNumber) {
-          const adminMessage = `🔔 *New Reservation Alert!*\n\n👤 *Name:* ${pendingBookingData.name}\n📱 *WhatsApp:* ${pendingBookingData.whatsapp}\n📧 *Email:* ${pendingBookingData.email}\n🎟️ *Screening:* ${screeningLabel}\n👥 *Seats:* ${pendingBookingData.tickets}\n💰 *Total Cover:* ₹${total}\n\n📄 *Payment Receipt uploaded!* Check your Google Sheets for the Drive link.`;
-          await sendWhatsAppMessageFrontend(adminNumber, adminMessage);
-        }
-      } catch (waError) {
-        console.error("Error sending client-side WhatsApp alerts:", waError);
       }
 
       toast.success("Payment screenshot uploaded & reservation confirmed!", {
