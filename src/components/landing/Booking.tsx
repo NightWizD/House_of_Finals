@@ -67,7 +67,7 @@ export function Booking() {
     reset,
   } = useForm<FormValues>({
     resolver: zodResolver(schema),
-    defaultValues: { screening: "ucl", tickets: 2 },
+    defaultValues: { screening: "ucl", tickets: 1 },
   });
 
   const tickets = Number(watch("tickets")) || 0;
@@ -252,7 +252,7 @@ export function Booking() {
             className="mt-6 inline-flex items-center gap-2.5 border border-foreground bg-foreground px-6 py-3.5 text-[11px] font-semibold uppercase tracking-[0.25em] text-background transition hover:bg-background hover:text-foreground active:scale-95 shadow-[0_0_20px_oklch(1_0_0_/0.15)]"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
             </svg>
             📍 View Venue on Maps
           </a>
@@ -269,7 +269,7 @@ export function Booking() {
         >
           {/* Glowing accent bar at top */}
           <div className="absolute top-0 left-0 right-0 h-[4px] bg-gradient-to-r from-emerald-500 via-amber-500 to-blue-500" />
-          
+
           {/* Pulsing Status indicator */}
           <div className="flex items-center justify-between mb-8 pb-4 border-b border-border/40 mt-1">
             <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-emerald-500 flex items-center gap-1.5 select-none">
@@ -386,9 +386,9 @@ export function Booking() {
             </DialogDescription>
           </DialogHeader>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 my-5 border-y border-border/50 py-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 my-5 border-y border-border/50 py-5">
             {/* Left side: QR payment */}
-              <div className="flex flex-col items-center bg-background/40 border border-border/40 rounded-xl p-5 text-center">
+            <div className="flex flex-col items-center bg-background/40 border border-border/40 rounded-xl p-5 text-center">
               <div className="w-full">
                 <div className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mb-1">
                   Pay Cover Charge
@@ -427,9 +427,8 @@ export function Booking() {
                     onDragLeave={handleDragLeave}
                     onDrop={handleDrop}
                     onClick={() => fileInputRef.current?.click()}
-                    className={`flex flex-col items-center justify-center border-2 border-dashed rounded-xl p-6 cursor-pointer bg-background/20 hover:bg-background/40 transition-all duration-300 h-[200px] text-center group ${
-                      isDragging ? "border-foreground bg-background/50 scale-[1.02]" : "border-border hover:border-foreground/50"
-                    }`}
+                    className={`flex flex-col items-center justify-center border-2 border-dashed rounded-xl p-6 cursor-pointer bg-background/20 hover:bg-background/40 transition-all duration-300 h-[200px] text-center group ${isDragging ? "border-foreground bg-background/50 scale-[1.02]" : "border-border hover:border-foreground/50"
+                      }`}
                   >
                     <input
                       ref={fileInputRef}
