@@ -21,7 +21,6 @@ const PRICE = 500;
 const SCREENINGS = [
   { value: "ucl", label: "UCL Finals (PSG V/S Arsenal) - 30th May 2026" },
   { value: "ipl", label: "IPL Finals (TBA) - 31st May 2026" },
-  { value: "both", label: "Both Nights - 30th & 31st May 2026" },
 ] as const;
 
 const schema = z.object({
@@ -33,7 +32,7 @@ const schema = z.object({
     .max(20)
     .regex(/^[0-9+\-\s()]+$/, "Digits only"),
   email: z.string().trim().email("Enter a valid email address").max(120),
-  screening: z.enum(["ucl", "ipl", "both"], {
+  screening: z.enum(["ucl", "ipl"], {
     errorMap: () => ({ message: "Please select a screening" }),
   }),
   tickets: z.number().int().min(1, "Minimum 1 ticket").max(10, "Maximum 10 tickets"),
@@ -74,9 +73,8 @@ export function Booking() {
   const tickets = Number(watch("tickets")) || 0;
   const screening = watch("screening");
   const total = useMemo(() => {
-    const nights = screening === "both" ? 2 : 1;
-    return tickets * PRICE * nights;
-  }, [tickets, screening]);
+    return tickets * PRICE;
+  }, [tickets]);
 
   const handleOpenPayment = (data: FormValues) => {
     setPendingBookingData(data);

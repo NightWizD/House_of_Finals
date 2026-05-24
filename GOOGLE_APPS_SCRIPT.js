@@ -5,27 +5,28 @@ var ADMIN_EMAIL = "your-email@gmail.com";    // ← Replace with your own Gmail 
 function doPost(e) {
   try {
     var data = JSON.parse(e.postData.contents);
-    
+
     var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-    
+
     // Check if headers exist, if not create them
     if (sheet.getLastRow() === 0) {
       sheet.appendRow([
-        "Timestamp", 
-        "Full Name", 
-        "WhatsApp Mobile No.", 
-        "Email Id", 
-        "Selected Screening", 
-        "No. Of Tickets", 
-        "Total Cover (₹)", 
-        "Payment Screenshot Link"
+        "Timestamp",
+        "Full Name",
+        "WhatsApp Mobile No.",
+        "Email Id",
+        "Selected Screening",
+        "No. Of Tickets",
+        "Total Cover (₹)",
+        "Payment Screenshot Link",
+        "Verified"
       ]);
-      sheet.getRange(1, 1, 1, 8)
+      sheet.getRange(1, 1, 1, 9)
         .setFontWeight("bold")
         .setBackground("#0f172a")
         .setFontColor("#ffffff");
     }
-    
+
     // Save payment screenshot to Google Drive
     var fileUrl = "";
     if (data.image && data.imageName) {
@@ -48,7 +49,7 @@ function doPost(e) {
         fileUrl = "Error saving receipt: " + err.message;
       }
     }
-    
+
     // Save booking data to Google Sheet
     sheet.appendRow([
       new Date(),
@@ -58,13 +59,17 @@ function doPost(e) {
       data.screening,
       data.tickets,
       data.total,
-      fileUrl
+      fileUrl,
+      false // default value for "Verified" checkbox is unchecked
     ]);
     
+    // Insert interactive checkbox in the 9th column
+    sheet.getRange(sheet.getLastRow(), 9).insertCheckboxes();
+
     // ====== SEND CONFIRMATION EMAIL TO BUYER ======
     var buyerSubject = "🎟️ Your Reservation is Confirmed – The House of Finals";
     var buyerHtml = getBuyerHtml(data.name, data.screening, data.tickets, data.total, data.whatsapp);
-    
+
     // Fallback plain text for email clients that do not support HTML
     var buyerBody = "Hi " + data.name + ",\n\n" +
       "We have received your payment of ₹" + data.total + " for " + data.tickets + " seat(s) to " + data.screening + ".\n\n" +
@@ -89,7 +94,7 @@ function doPost(e) {
     // ====== SEND ALERT EMAIL TO ADMIN ======
     var adminSubject = "🔔 New Reservation – " + data.name + " (" + data.tickets + " seats)";
     var adminHtml = getAdminHtml(data.name, data.whatsapp, data.email, data.screening, data.tickets, data.total, fileUrl);
-    
+
     var adminBody = "New reservation received!\n\n" +
       "👤 Name: " + data.name + "\n" +
       "📱 WhatsApp: " + data.whatsapp + "\n" +
@@ -110,7 +115,7 @@ function doPost(e) {
       status: "success",
       message: "Data saved and confirmation HTML emails sent"
     })).setMimeType(ContentService.MimeType.JSON);
-    
+
   } catch (error) {
     return ContentService.createTextOutput(JSON.stringify({
       status: "error",
